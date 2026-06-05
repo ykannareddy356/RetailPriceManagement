@@ -136,6 +136,7 @@ const searchByItemCode = async (req, res) => {
     });
   }
 };
+
 module.exports = {
   createPrice,
   getAllPrices,

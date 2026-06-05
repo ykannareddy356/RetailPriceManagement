@@ -1,9 +1,14 @@
+
+console.log("🔥 SERVER FILE EXECUTED");
+
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 require("dotenv").config();
 const priceRoutes = require("./routes/priceRoute");
 const app = express();
+const authRoutes = require("./routes/authRoutes");
+
 
 // middleware
 app.use(cors());
@@ -16,6 +21,11 @@ mongoose
 
 
 
+
+  app.use((req, res, next) => {
+  console.log("🟢 REQUEST HIT:", req.method, req.url);
+  next();
+});
 // test route
 app.get("/", (req, res) => {
   res.send("RPM Backend Running 🚀");
@@ -23,6 +33,9 @@ app.get("/", (req, res) => {
 
 // POST route for creating a new price
 app.use("/api/prices", priceRoutes);
+
+// auth routes
+app.use("/api/auth", authRoutes);
 
 // start server
 const PORT = process.env.PORT || 5000;
