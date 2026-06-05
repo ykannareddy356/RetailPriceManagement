@@ -1,36 +1,24 @@
-import { useState } from "react";
-import PriceForm from "./components/PriceForm";
-import PriceTable from "./components/PriceTable";
-import SearchPrice from "./components/SearchPrice";
-import { ToastContainer ,toast} from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Dashboard from "./pages/Dashboard";
+import Login from "./pages/Login";
+import PrivateRoute from "./components/PrivateRoutes";
 
 function App() {
-  const [refresh, setRefresh] = useState(false);
-  const [selectedPrice, setSelectedPrice] = useState(null);
-
-  const handleRefresh = () => {
-    setRefresh(!refresh);
-  };
-  const clearSelectedPrice = () => {
-  setSelectedPrice(null);
-};
   return (
-    <div className="app-container">
-      <ToastContainer />
-      <h1>Retail Price Management</h1>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/login" element={<Login />} />
 
-      <PriceForm onAdd={handleRefresh} 
-                selectedPrice={selectedPrice} 
-                clearSelectedPrice={clearSelectedPrice}/>
-      <SearchPrice />
-      <PriceTable key={refresh} 
-                  refresh={refresh}   
-                  onEdit={setSelectedPrice}
-                  onDelete={handleRefresh} />
-    
-    </div>
+        <Route
+          path="/dashboard"
+          element={
+            <PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>
+          }
+        />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
