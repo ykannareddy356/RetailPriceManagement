@@ -6,7 +6,7 @@ import { ToastContainer ,toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import '../App.css';
 
-function App() {
+function Dashboard() {
   const [refresh, setRefresh] = useState(false);
   const [selectedPrice, setSelectedPrice] = useState(null);
 
@@ -34,4 +34,4 @@ function App() {
   );
 }
 
-export default App;
+export default Dashboard;
