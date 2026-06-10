@@ -4,9 +4,6 @@ const jwt = require("jsonwebtoken");
 
 let refreshTokens = [];
 
-
-
-
 // REGISTER
 const register = async (req, res) => {
   try {
