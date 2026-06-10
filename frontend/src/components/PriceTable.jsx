@@ -56,14 +56,17 @@ function PriceTable({refresh,onDelete,onEdit})
   const totalItems = prices.length;
   const highestPrice =prices.length > 0? Math.max(...prices.map((p) => Number(p.newPrice))): 0;
   const lowestPrice =prices.length > 0? Math.min(...prices.map((p) => Number(p.newPrice))): 0;
-  
+  //if we use prices original array gets affected so using spreaad operator
+
+
+
   //sorting logic
   const sortedPrices = [...filteredPrices];
-  if (sortBy === "codeAsc") {sortedPrices.sort((a, b) =>a.itemCode.localeCompare(b.itemCode));}
+  if (sortBy === "codeAsc") {sortedPrices.sort((a, b) =>a.itemCode.localeCompare(b.itemCode));} //strings
   if (sortBy === "codeDesc") {sortedPrices.sort((a, b) =>b.itemCode.localeCompare(a.itemCode));}
-  if (sortBy === "priceAsc") {sortedPrices.sort((a, b) =>a.newPrice - b.newPrice);}
+  if (sortBy === "priceAsc") {sortedPrices.sort((a, b) =>a.newPrice - b.newPrice);}//nums
   if (sortBy === "priceDesc") {sortedPrices.sort((a, b) =>b.newPrice - a.newPrice);}
-  if (sortBy === "newest") {sortedPrices.sort((a, b) =>new Date(b.updatedAt) - new Date(a.updatedAt));}
+  if (sortBy === "newest") {sortedPrices.sort((a, b) =>new Date(b.updatedAt) - new Date(a.updatedAt));}//dates
   if (sortBy === "oldest") {sortedPrices.sort((a, b) =>new Date(a.updatedAt) - new Date(b.updatedAt));}
   
   //pagination as per frontend logic but backend logic is feasible and efficient

@@ -43,6 +43,8 @@ button {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  background-color: green;
+  color: white;
 }
 .save-btn:disabled {
   opacity: 0.6;
